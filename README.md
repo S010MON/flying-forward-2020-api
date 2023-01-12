@@ -22,7 +22,7 @@ Done!
 
 ## API Specification 
 
-### POST `/api/dump` 
+### POST `/api/data` 
 ```json
 {
   "user_data":
@@ -85,6 +85,16 @@ None
 | Field                         | Type         | Null | Key | Default | Extra          |
 +-------------------------------+--------------+------+-----+---------+----------------+
 | user_id                       | int          | NO   | PRI | NULL    | auto_increment |
+| username                      | varchar(255) | NO   |     | NULL    |                |
+| hashed_password               | varchar(255) | NO   |     | NULL    |                |
++-------------------------------+--------------+------+-----+---------+----------------+
+```
+### Pilots
+```
++-------------------------------+--------------+------+-----+---------+----------------+
+| Field                         | Type         | Null | Key | Default | Extra          |
++-------------------------------+--------------+------+-----+---------+----------------+
+| pilot_id                      | int          | NO   | PRI | NULL    | auto_increment |
 | age                           | int          | YES  |     | NULL    |                |
 | flying_minutes                | int          | YES  |     | NULL    |                |
 | gender                        | varchar(1)   | YES  |     | NULL    |                |
@@ -98,19 +108,4 @@ None
 | max_dist_to_start             | double       | YES  |     | NULL    |                |
 | gated_vul_points              | int          | YES  |     | NULL    |                |
 +-------------------------------+--------------+------+-----+---------+----------------+
-```
-### Vectors
-```
-+-----------+--------+------+-----+---------+-------+
-| Field     | Type   | Null | Key | Default | Extra |
-+-----------+--------+------+-----+---------+-------+
-| user_id   | int    | NO   | PRI | NULL    |       |
-| time_ms   | double | NO   | PRI | NULL    |       |
-| px        | double | NO   |     | NULL    |       |
-| py        | double | NO   |     | NULL    |       |
-| pz        | double | NO   |     | NULL    |       |
-| vx        | double | NO   |     | NULL    |       |
-| vy        | double | NO   |     | NULL    |       |
-| vz        | double | NO   |     | NULL    |       |
-+-----------+--------+------+-----+---------+-------+
 ```
