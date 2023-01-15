@@ -18,6 +18,7 @@ app.include_router(users.router)
 origins = [
     "http://localhost",
     "http://localhost:8080",
+    "http://drone-flying-online.eu/",
     "https://drone-flying-online.eu/"
 ]
 
