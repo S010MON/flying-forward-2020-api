@@ -25,53 +25,44 @@ Done!
 ### POST `/api/data` 
 ```json
 {
-  "user_data":
-    {
-      "age": 20,
-      "flying_exp_mins": 30,
-      "gender": "m",
-      "license": "A1 & A3" 
-    },
-  "map": "Intruder",
-  "summary": 
-    {
-      "time_overflying_people_ms": 34,
-      "number_overflown_people": 399,
-      "min_dist_to_nearest_structure": 60.4,
-      "min_dist_to_nearest_person": 50.3,
-      "avg_dist_to_intruder": 39.4,
-      "max_dist_to_start": 150.67,
-      "gated_vul_points": 4
-    },
-  "vectors": [
-    {
-      "time_ms": 0,
-      "px": 0,
-      "py": 0,
-      "pz": 0,
-      "vx": 0,
-      "vy": 0,
-      "vz": 0
-    },
-    {
-      "time_ms": 5,
-      "px": 0,
-      "py": 0,
-      "pz": 0,
-      "vx": 0,
-      "vy": 0,
-      "vz": 0
-    },
-    {
-      "time_ms": 10,
-      "px": 0,
-      "py": 0,
-      "pz": 0,
-      "vx": 0,
-      "vy": 0,
-      "vz": 0
-    }
-  ]
+  "pilot": {
+    "age": int,
+    "licenses": str,
+    "flight_hrs": int,
+  },
+  "mission":
+  {
+    "success": boolean
+    "duration_secs": int,
+    "distance_m": float,
+    "max_speed_mps": float,
+    "avg_speed_mps": float,
+    "max_height_m": float,
+    "avg_height_m": float,
+    "overflown_people": int,
+  }
+}
+```
+
+Example:
+```json
+{
+  "pilot": {
+    "age": 25,
+    "licenses": "A1 & A3",
+    "flight_hrs": 50
+  },
+  "mission":
+  {
+    "success": true,
+    "duration_secs": 75,
+    "distance_m": 1282.4,
+    "max_speed_mps": 50.0,
+    "avg_speed_mps": 32.1,
+    "max_height_m": 200.0,
+    "avg_height_m": 81.3,
+    "overflown_people": 20
+  }
 }
 ```
 
