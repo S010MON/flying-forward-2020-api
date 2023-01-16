@@ -81,22 +81,31 @@ None
 +-------------------------------+--------------+------+-----+---------+----------------+
 ```
 ### Pilots
+```bash
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int          | NO   | PRI | NULL    | auto_increment |
+| ip         | varchar(40)  | YES  |     | NULL    |                |
+| age        | int          | YES  |     | NULL    |                |
+| licenses   | varchar(255) | YES  |     | NULL    |                |
+| flight_hrs | int          | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
 ```
-+-------------------------------+--------------+------+-----+---------+----------------+
-| Field                         | Type         | Null | Key | Default | Extra          |
-+-------------------------------+--------------+------+-----+---------+----------------+
-| pilot_id                      | int          | NO   | PRI | NULL    | auto_increment |
-| age                           | int          | YES  |     | NULL    |                |
-| flying_minutes                | int          | YES  |     | NULL    |                |
-| gender                        | varchar(1)   | YES  |     | NULL    |                |
-| licences                      | varchar(255) | YES  |     | NULL    |                |
-| map                           | varchar(255) | YES  |     | NULL    |                |
-| time_overflying_people_ms     | int          | YES  |     | NULL    |                |
-| number_overflown_people       | int          | YES  |     | NULL    |                |
-| min_dist_to_nearest_structure | double       | YES  |     | NULL    |                |
-| min_dist_to_nearest_person    | double       | YES  |     | NULL    |                |
-| avg_dist_to_intruder          | double       | YES  |     | NULL    |                |
-| max_dist_to_start             | double       | YES  |     | NULL    |                |
-| gated_vul_points              | int          | YES  |     | NULL    |                |
-+-------------------------------+--------------+------+-----+---------+----------------+
+
+```bash
++------------------+------------+------+-----+---------+----------------+
+| Field            | Type       | Null | Key | Default | Extra          |
++------------------+------------+------+-----+---------+----------------+
+| id               | int        | NO   | PRI | NULL    | auto_increment |
+| pilot_id         | int        | NO   | MUL | NULL    |                |
+| success          | tinyint(1) | YES  |     | NULL    |                |
+| duration_secs    | int        | YES  |     | NULL    |                |
+| distance_m       | float      | YES  |     | NULL    |                |
+| max_speed_mps    | float      | YES  |     | NULL    |                |
+| avg_speed_mps    | float      | YES  |     | NULL    |                |
+| max_height_m     | float      | YES  |     | NULL    |                |
+| avg_height_m     | float      | YES  |     | NULL    |                |
+| overflown_people | int        | YES  |     | NULL    |                |
++------------------+------------+------+-----+---------+----------------+
 ```
