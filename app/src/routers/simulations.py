@@ -18,8 +18,6 @@ async def post_simulation_data(simulation: Simulation,
     pilot = read_pilot(db, request.client.host)
     message = "pilot found in db"
 
-    print(pilot.id, pilot.ip)
-
     if not pilot:
         message = "new pilot created"
         pilot_create = Pilot(age=simulation.pilot.age,
