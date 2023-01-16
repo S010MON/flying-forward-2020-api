@@ -1,10 +1,14 @@
 from pydantic import BaseModel
 
 
-class Pilot(BaseModel):
+class PilotCreate(BaseModel):
     age: int
     licenses: str
     flight_hrs: int
+
+
+class Pilot(PilotCreate):
+    ip: str
 
 
 class Mission(BaseModel):
@@ -19,5 +23,6 @@ class Mission(BaseModel):
 
 
 class Simulation(BaseModel):
-    pilot: Pilot
+    pilot: PilotCreate
     mission: Mission
+
