@@ -1,5 +1,3 @@
-from sqlalchemy import update
-from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 from app.src.database.models import Pilot_db
 from app.src.schemas.simulations import Pilot
