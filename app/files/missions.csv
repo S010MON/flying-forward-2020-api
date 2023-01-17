@@ -1,0 +1,7 @@
+pilot_id,age,flight_hrs,licenses,success,duration_secs,distance_m,max_speed_mps,avg_speed_mps,max_height_m,avg_height_m,overflown_people
+1,25,50,A1 & A3,True,75,1282.4,50.0,32.1,200.0,81.3,20
+1,25,50,A1 & A3,True,75,1282.4,50.0,32.1,200.0,81.3,20
+1,25,50,A1 & A3,True,75,1282.4,50.0,32.1,200.0,81.3,20
+1,25,50,A1 & A3,True,75,1282.4,50.0,32.1,200.0,81.3,20
+1,25,50,A1 & A3,True,75,1282.4,50.0,32.1,200.0,81.3,20
+1,25,50,A1 & A3,True,75,1282.4,50.0,32.1,200.0,81.3,20
