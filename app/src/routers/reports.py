@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.responses import FileResponse
 
 from sqlalchemy.orm import Session
 
@@ -11,9 +12,33 @@ router = APIRouter(tags=['reports'])
 
 
 @router.get("/report/missions", status_code=status.HTTP_200_OK)
-def get_all_missions(db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)):
+async def get_all_missions(db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)):
     missions = read_all_missions(db)
     return missions
+
+
+@router.get("/report/missions/csv", status_code=status.HTTP_200_OK)
+async def get_all_missions_csv(db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)):
+    missions = read_all_missions(db)
+    print(str(missions[0]))
+    with open("app/files/missions.csv", 'w') as file:
+        file.write("pilot_id,age,flight_hrs,licenses,success,duration_secs,distance_m,max_speed_mps,avg_speed_mps,"
+                   "max_height_m,avg_height_m,overflown_people\n")
+
+        for i in range(len(missions)):
+            file.write(f"{str(missions[i][0])},"
+                       f"{str(missions[i][1])},"
+                       f"{str(missions[i][2])},"
+                       f"{str(missions[i][3])},"
+                       f"{str(missions[i][4])},"
+                       f"{str(missions[i][5])},"
+                       f"{str(missions[i][6])},"
+                       f"{str(missions[i][7])},"
+                       f"{str(missions[i][8])},"
+                       f"{str(missions[i][9])},"
+                       f"{str(missions[i][10])},"
+                       f"{str(missions[i][11])}\n")
+    return FileResponse("app/files/missions.csv")
 
 
 @router.get("/report/missions/{pilot_id}", status_code=status.HTTP_200_OK)
