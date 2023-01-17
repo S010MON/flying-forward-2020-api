@@ -29,7 +29,7 @@ async def post_simulation_data(simulation: Simulation,
         pilot_create = Pilot(age=simulation.pilot.age,
                              flight_hrs=simulation.pilot.flight_hrs,
                              licenses=simulation.pilot.licenses,
-                             ip=request.client.host)
+                             ip=pilot_ip)
         pilot = create_pilot(db, pilot_create)
 
     create_mission(db, simulation.mission, pilot)
