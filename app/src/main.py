@@ -44,4 +44,8 @@ async def startup_event():
 
 @app.get("/", status_code=status.HTTP_418_IM_A_TEAPOT)
 async def root(request: Request):
+    try:
+        print(request.headers["x-forwarded-for"])
+    except KeyError:
+        print("No header found")
     return {"description": "I am a teapot"}
