@@ -2,9 +2,9 @@ from fastapi import APIRouter, Depends, HTTPException, status, Request
 
 from sqlalchemy.orm import Session
 
-from ..crud.pilots import create_pilot, read_pilot
+from ..crud.pilots import create_pilot, read_pilot_by_ip
 from ..crud.missions import create_mission
-from ..schemas.simulations import Simulation, Pilot, Mission
+from ..schemas.simulations import Simulation, Pilot
 from ..database.db_config import get_db
 
 router = APIRouter(tags=['data'])
@@ -15,7 +15,7 @@ async def post_simulation_data(simulation: Simulation,
                                request: Request,
                                db: Session = Depends(get_db)):
     validate_input(simulation)
-    pilot = read_pilot(db, request.client.host)
+    pilot = read_pilot_by_ip(db, request.client.host)
     message = "pilot found in db"
 
     if not pilot:

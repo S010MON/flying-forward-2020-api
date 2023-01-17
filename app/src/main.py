@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 
-from .routers import auth, users, simulations
+from .routers import auth, users, simulations, reports
 from .crud import users as crud_users
 from .database import models
 from .database.db_config import engine, SessionLocal
@@ -15,7 +15,7 @@ app = FastAPI()
 app.include_router(auth.router)
 app.include_router(users.router)
 app.include_router(simulations.router)
-
+app.include_router(reports.router)
 
 origins = [
     "http://localhost",
