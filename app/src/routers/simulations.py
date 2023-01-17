@@ -15,15 +15,21 @@ async def post_simulation_data(simulation: Simulation,
                                request: Request,
                                db: Session = Depends(get_db)):
     validate_input(simulation)
-    pilot = read_pilot_by_ip(db, request.client.host)
-    message = "pilot found in db"
+
+    try:
+        pilot_ip = request.headers["x-forwarded-for"]
+    except KeyError:
+        pilot_ip = request.client.host
+
+    pilot = read_pilot_by_ip(db, pilot_ip)
+    message = f"pilot found in db {pilot_ip}"
 
     if not pilot:
-        message = "new pilot created"
+        message = f"new pilot created {pilot_ip}"
         pilot_create = Pilot(age=simulation.pilot.age,
                              flight_hrs=simulation.pilot.flight_hrs,
                              licenses=simulation.pilot.licenses,
-                             ip=request.client.host)
+                             ip=pilot_ip)
         pilot = create_pilot(db, pilot_create)
 
     create_mission(db, simulation.mission, pilot)
