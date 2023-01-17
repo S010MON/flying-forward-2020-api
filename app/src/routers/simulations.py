@@ -15,7 +15,13 @@ async def post_simulation_data(simulation: Simulation,
                                request: Request,
                                db: Session = Depends(get_db)):
     validate_input(simulation)
-    pilot = read_pilot_by_ip(db, request.client.host)
+
+    try:
+        pilot_ip = request.headers["x-forwarded-for"]
+    except KeyError:
+        pilot_ip = request.client.host
+
+    pilot = read_pilot_by_ip(db, pilot_ip)
     message = "pilot found in db"
 
     if not pilot:
