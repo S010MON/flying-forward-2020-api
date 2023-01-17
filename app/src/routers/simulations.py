@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 
 from ..crud.pilots import create_pilot, read_pilot
 from ..crud.missions import create_mission
-from ..schemas.simulations import Simulation, Pilot, Mission
+from ..schemas.simulations import Simulation, Pilot
 from ..database.db_config import get_db
 
 router = APIRouter(tags=['data'])
