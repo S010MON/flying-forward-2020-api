@@ -22,10 +22,10 @@ async def post_simulation_data(simulation: Simulation,
         pilot_ip = request.client.host
 
     pilot = read_pilot_by_ip(db, pilot_ip)
-    message = "pilot found in db"
+    message = f"pilot found in db {pilot_ip}"
 
     if not pilot:
-        message = "new pilot created"
+        message = f"new pilot created {pilot_ip}"
         pilot_create = Pilot(age=simulation.pilot.age,
                              flight_hrs=simulation.pilot.flight_hrs,
                              licenses=simulation.pilot.licenses,
