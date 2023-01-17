@@ -13,21 +13,20 @@ class User(Base):
     failed_attempts = Column(Integer, default=0)
 
 
-class Pilot_db(Base):
+class Pilot(Base):
     __tablename__ = "pilots"
-    id = Column(Integer, primary_key=True, index=True)
-    ip = Column(String, unique=True, index=True)
+    pilot_id = Column(Integer, primary_key=True)
+    ip = Column(String, unique=True)
     age = Column(Integer)
     licenses = Column(String)
     flight_hrs = Column(Integer)
 
-    missions = relationship("Mission_db", back_populates="pilot")
+    missions = relationship("Mission")
 
 
-class Mission_db(Base):
+class Mission(Base):
     __tablename__ = "missions"
-    id = Column(Integer, primary_key=True, index=True)
-    pilot_id = Column(ForeignKey("pilots.id"))
+    mission_id = Column(Integer, primary_key=True)
 
     success = Column(Boolean, default=False)
     duration_secs = Column(Integer)
@@ -38,4 +37,5 @@ class Mission_db(Base):
     avg_height_m = Column(Float)
     overflown_people = Column(Integer)
 
-    pilot = relationship("Pilot_db", back_populates="missions")
+    pilot_id = Column(Integer, ForeignKey("pilots.pilot_id"))
+    pilot = relationship("Pilot", back_populates="missions")
