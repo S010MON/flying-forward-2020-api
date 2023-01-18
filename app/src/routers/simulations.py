@@ -14,6 +14,8 @@ router = APIRouter(tags=['data'])
 async def post_simulation_data(simulation: Simulation,
                                request: Request,
                                db: Session = Depends(get_db)):
+    print(simulation)
+
     validate_input(simulation)
 
     try:
