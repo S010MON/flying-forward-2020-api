@@ -29,14 +29,14 @@ async def create_user(user: UserCreate,
     return users.create_user(db, user)
 
 
-@router.get("/api/user/{username}")
+@router.get("/api/user/{username}", status_code=status.HTTP_200_OK)
 async def get_one_user(username: str,
                        db: Session = Depends(get_db),
                        token: str = Depends(oauth2_scheme)):
     user = users.get_user(db, username)
     if user is None:
         raise NOT_FOUND_EXCEPTION
-    return user
+    return {"msg": "found"}
 
 
 @router.put("/api/user/", status_code=status.HTTP_200_OK)
@@ -54,6 +54,10 @@ async def update_user_password(user: UserUpdate,
 
 @router.delete("/api/user/", status_code=status.HTTP_200_OK)
 async def delete_current_user(user: User = Depends(get_current_active_user),
-                              db: Session = Depends(oauth2_scheme)):
-    users.delete_user(db, user.username)
+                              db: Session = Depends(get_db),
+                              token: str = Depends(oauth2_scheme)):
+    if not users.delete_user(db, user.username):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail="User not found")
+
     return {"detail": "user successfully deleted"}

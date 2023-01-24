@@ -8,8 +8,8 @@ from app.src.core.config import settings
 
 
 def get_user(db: Session, username: str) -> User:
-    return db.query(models.User)\
-        .filter(models.User.username == username)\
+    return db.query(models.User) \
+        .filter(models.User.username == username) \
         .first()
 
 
@@ -38,11 +38,14 @@ def update_user_password(db: Session, user: UserCreate) -> bool:
 
 
 def delete_user(db: Session, username: str) -> bool:
-    user = db.query(models.User)\
-        .filter(models.User.username == username)\
+    user = db.query(models.User) \
+        .filter(models.User.username == username) \
         .first()
     if not user:
         return False
+
+    set_user_disabled(db, username, True)
+
     db.delete(user)
     db.commit()
     return True
